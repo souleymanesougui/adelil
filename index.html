@@ -116,7 +116,7 @@
       transform: translateY(1px);
     }
 
-    /* ===== WIDGET TRADUCTION REDUIT EN ICONE ===== */
+    /* ===== WIDGET TRADUCTION - UNIQUEMENT L'ICONE ===== */
     #google_translate_element {
       display: inline-block;
       padding: 0;
@@ -167,10 +167,17 @@
       gap: 3px !important;
     }
 
+    /* Masquer TOUS les textes (y compris "sélectionner une langue") */
     #google_translate_element .goog-te-gadget-simple .goog-te-menu-value span {
       display: none !important;
+      font-size: 0 !important;
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
     }
 
+    /* Afficher uniquement l'icône 🌐 */
     #google_translate_element .goog-te-gadget-simple .goog-te-menu-value::before {
       content: "🌐";
       font-size: 18px !important;
@@ -178,12 +185,19 @@
       line-height: 1 !important;
     }
 
+    /* Masquer l'image Google et la flèche */
     #google_translate_element .goog-te-gadget-simple img {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    #google_translate_element .goog-te-gadget-simple .goog-te-menu-value .goog-te-menu-value-arrow {
       display: none !important;
     }
 
-    /* Petite flèche de sélection */
-    #google_translate_element .goog-te-gadget-simple .goog-te-menu-value .goog-te-menu-value-arrow {
+    /* Forcer la suppression du texte résiduel */
+    .goog-te-gadget-simple .goog-te-menu-value span:first-child {
       display: none !important;
     }
 
