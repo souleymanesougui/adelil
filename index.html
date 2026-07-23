@@ -48,217 +48,147 @@
       position: relative;
     }
 
-    header {
+    /* --- TOP BAR : bouton gauche + traduction droite --- */
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      width: 100%;
-      text-align: center;
-      padding: 20px 15px;
-      font-size: clamp(20px, 6vw, 32px);
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--light);
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-      margin-bottom: 15px;
-      position: relative;
-    }
-
-    /* Bouton histoire en haut à gauche */
-    .story-btn {
-      position: absolute;
-      top: 12px;
-      left: 15px;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      z-index: 100;
-      backdrop-filter: blur(4px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .story-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.08);
-      border-color: rgba(255, 255, 255, 0.6);
-    }
-
-    .story-btn:active {
-      transform: scale(0.95);
-    }
-
-    /* Modal histoire */
-    .story-modal {
-      display: none;
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(6px);
+      z-index: 100;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .story-modal-content {
-      background: white;
-      padding: 30px 28px;
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      width: 100%;
-      max-width: 620px;
-      max-height: 85vh;
-      position: relative;
-      overflow-y: auto;
-      animation: modalFadeIn 0.4s ease-out;
-    }
-
-    .story-modal-content h2 {
-      margin-top: 0;
-      color: var(--primary);
-      font-size: clamp(22px, 5vw, 28px);
-      text-align: center;
-      border-bottom: 3px solid var(--accent);
-      padding-bottom: 12px;
-    }
-
-    .story-modal-content p {
-      color: var(--text-dark);
-      font-size: clamp(15px, 4vw, 17px);
-      line-height: 1.7;
-      margin: 14px 0;
-      text-align: justify;
-      background: #f8f9fa;
-      padding: 12px 16px;
-      border-radius: 12px;
-      border-left: 4px solid var(--accent);
-    }
-
-    .story-modal-content .story-quote {
-      font-style: italic;
-      color: var(--secondary);
-      background: #eef2f7;
-      border-left-color: var(--secondary);
-      padding: 16px 20px;
-      margin: 16px 0;
-      border-radius: 12px;
-    }
-
-    .close-story {
-      position: absolute;
-      top: 12px;
-      right: 18px;
-      background: none;
-      border: none;
-      font-size: 32px;
+    .btn-story {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 8px 18px;
+      border-radius: 40px;
       cursor: pointer;
-      color: var(--text-light);
-      width: 44px;
-      height: 44px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: background 0.3s;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: 0.2s;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+    .btn-story:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.02);
+    }
+    .btn-story:active {
+      transform: scale(0.96);
+    }
+    .btn-story svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
     }
 
-    .close-story:hover {
-      background: rgba(0,0,0,0.05);
-      color: var(--dark);
-    }
-
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.92) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    /* Style du scroll dans le modal */
-    .story-modal-content::-webkit-scrollbar {
-      width: 6px;
-    }
-    .story-modal-content::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 10px;
-    }
-    .story-modal-content::-webkit-scrollbar-thumb {
-      background: var(--accent);
-      border-radius: 10px;
-    }
-
-    /* Conteneur pour le widget de traduction */
+    /* Widget traduction plus petit */
     #google_translate_element {
-      margin: 12px auto;
-      padding: 10px 15px;
-      background: var(--card-bg);
-      border-radius: 50px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(142, 68, 173, 0.2);
+      margin: 0;
+      padding: 2px 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 40px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.15);
       display: inline-block;
-      width: auto;
-      min-width: 200px;
+      transform: scale(0.85);
+      transform-origin: right center;
+      line-height: 1;
     }
     #google_translate_element .goog-te-gadget {
-      color: var(--text-dark) !important;
+      color: #fff !important;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+      font-size: 12px !important;
     }
     #google_translate_element .goog-te-gadget-simple {
       background-color: transparent !important;
       border: none !important;
-      padding: 5px 10px !important;
+      padding: 2px 6px !important;
       border-radius: 30px !important;
     }
     #google_translate_element .goog-te-gadget-simple .goog-te-menu-value {
-      color: var(--text-dark) !important;
-      font-size: 14px !important;
+      color: #fff !important;
+      font-size: 13px !important;
+      font-weight: 500;
+    }
+    #google_translate_element .goog-te-gadget-simple .goog-te-menu-value span {
+      color: #fff !important;
+    }
+    /* cache le lien "Traduction" / "Powered by" */
+    #google_translate_element .goog-te-gadget span:not(:first-child) {
+      display: none !important;
+    }
+    .goog-te-gadget .goog-te-combo {
+      background: rgba(255,255,255,0.2) !important;
+      color: #fff !important;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      border-radius: 30px !important;
+      padding: 2px 8px !important;
+      font-size: 13px !important;
+    }
+
+    /* header (titre) */
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 18px 15px 14px;
+      font-size: clamp(20px, 6vw, 32px);
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--light);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      margin-bottom: 6px;
     }
 
     .breadcrumb {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       width: 100%;
-      padding: 15px 10px;
-      font-size: clamp(14px, 4vw, 18px);
+      padding: 12px 16px;
+      font-size: clamp(13px, 3.5vw, 17px);
       color: var(--light);
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       text-align: center;
       word-wrap: break-word;
       display: none;
     }
-
     .breadcrumb a {
       color: var(--light);
       text-decoration: none;
       cursor: pointer;
-      padding: 5px 8px;
-      border-radius: 5px;
+      padding: 4px 10px;
+      border-radius: 20px;
       transition: background-color 0.3s;
       display: inline-block;
       margin: 2px;
+      background: rgba(255,255,255,0.08);
     }
-
     .breadcrumb a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255,255,255,0.25);
     }
-
     .breadcrumb span {
-      margin: 0 8px;
-      color: #9b59b6;
+      margin: 0 6px;
+      color: #c9a0d9;
     }
 
     #searchBox {
-      margin: 20px 15px;
-      padding: 15px 20px 15px 50px;
+      margin: 16px 15px 10px;
+      padding: 14px 20px 14px 50px;
       font-size: clamp(14px, 4vw, 16px);
       width: 90%;
       max-width: 500px;
@@ -275,15 +205,33 @@
       background-position: 20px center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
     #searchBox:focus {
       box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.3);
       transform: translateY(-2px);
     }
-
     #searchBox::placeholder {
       color: var(--text-light);
+    }
+
+    #backBtn {
+      margin: 10px 15px 15px;
+      padding: 12px 28px;
       font-size: clamp(14px, 4vw, 16px);
+      border: none;
+      border-radius: 50px;
+      outline: none;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      color: white;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: none;
+    }
+    #backBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
     }
 
     #tree {
@@ -308,12 +256,10 @@
       min-width: 140px;
       max-width: 200px;
     }
-
     .person:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(44, 62, 80, 0.2);
     }
-
     .person img {
       width: 100%;
       height: auto;
@@ -326,12 +272,10 @@
       object-fit: cover;
       background: #ecf0f1;
     }
-
     .person:hover img {
       transform: scale(1.05);
       border-color: var(--secondary);
     }
-
     .person-name {
       margin-top: 12px;
       font-size: clamp(14px, 4vw, 16px);
@@ -344,133 +288,48 @@
       line-height: 1.3;
     }
 
-    #backBtn {
-      margin: 15px;
-      padding: 12px 25px;
-      font-size: clamp(14px, 4vw, 16px);
-      width: auto;
-      min-width: 160px;
-      border: none;
-      border-radius: 50px;
-      outline: none;
-      background: linear-gradient(135deg, var(--secondary), var(--accent));
-      color: white;
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      display: none;
-    }
-
-    #backBtn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(44, 62, 80, 0.3);
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-    }
-
-    #backBtn:active {
-      transform: translateY(1px);
-    }
-
     p {
       font-size: clamp(14px, 4vw, 16px);
       color: var(--text-light);
       text-align: center;
       max-width: 90%;
       line-height: 1.5;
-      padding: 15px;
+      padding: 20px;
       background: var(--card-bg);
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       margin: 10px;
     }
 
+    /* Responsive */
     @media (max-width: 480px) {
-      .person {
-        width: calc(50% - 10px);
-        padding: 10px;
-      }
-      .person img {
-        max-width: 100px;
-      }
-      #searchBox {
-        width: 95%;
-        margin: 15px 10px;
-        padding: 12px 15px 12px 45px;
-      }
-      header {
-        padding: 15px 10px;
-      }
-      #tree {
-        gap: 15px;
-        padding: 10px;
-      }
-      #google_translate_element {
-        min-width: 150px;
-        padding: 8px 12px;
-      }
-      .story-btn {
-        top: 10px;
-        left: 10px;
-        width: 36px;
-        height: 36px;
-        font-size: 17px;
-      }
-      .story-modal-content {
-        padding: 20px 16px;
-        max-height: 90vh;
-      }
+      .top-bar { padding: 8px 12px; }
+      .btn-story { font-size: 12px; padding: 6px 14px; }
+      #google_translate_element { transform: scale(0.75); transform-origin: right center; }
+      .person { width: calc(50% - 10px); padding: 10px; }
+      .person img { max-width: 100px; }
+      #searchBox { width: 95%; margin: 12px 10px; padding: 12px 15px 12px 45px; }
+      #tree { gap: 15px; padding: 10px; }
     }
-
     @media (max-width: 320px) {
-      .person {
-        width: 100%;
-        max-width: 150px;
-      }
+      .person { width: 100%; max-width: 150px; }
+      .top-bar { flex-wrap: wrap; justify-content: center; }
+      #google_translate_element { transform: scale(0.7); }
     }
   </style>
 </head>
 <body>
-  <header id="mainHeader">
-    🌳 Les fils Gaïda
-    <!-- Bouton pour ouvrir l'histoire -->
-    <button class="story-btn" onclick="openStory()" title="Lire l'histoire de la famille">📖</button>
-  </header>
 
-  <!-- Modal Histoire -->
-  <div id="storyModal" class="story-modal">
-    <div class="story-modal-content">
-      <button class="close-story" onclick="closeStory()">×</button>
-      <h2>📜 Histoire des fils Gaïda</h2>
-      <p>
-        <strong>Bollou Oumar</strong>, patriarche de la lignée, a fondé une famille dont les racines plongent profondément dans l'histoire et la tradition.
-        Ses descendants, répartis en plusieurs branches, perpétuent son héritage à travers les générations.
-      </p>
-      <div class="story-quote">
-        « L'arbre généalogique des fils Gaïda est le reflet d'une histoire riche, faite de migrations, de rencontres et de transmission des valeurs.
-        Chaque nom porté par cette famille est une mémoire vivante, un lien entre le passé et l'avenir. »
-      </div>
-      <p>
-        <strong>Les premières générations</strong> ont vu naître des figures marquantes comme <em>Ababou Bollou</em> et <em>Arami Bollou</em>,
-        dont les descendants se sont étendus à travers de nombreuses branches.
-        Les noms de <strong>Naï</strong>, <strong>Eï</strong>, <strong>Guihini</strong> et bien d'autres témoignent de la diversité et de la richesse de cette famille.
-      </p>
-      <p>
-        Aujourd'hui, ce site a pour but de <strong>préserver la mémoire</strong> de cette grande famille,
-        de <strong>rassembler les générations</strong> et de <strong>transmettre l'histoire</strong> aux plus jeunes.
-        Chaque photo, chaque nom, chaque lien est une pierre apportée à l'édifice de notre héritage commun.
-      </p>
-      <p style="text-align: center; border-left: none; background: transparent; font-style: italic; color: var(--text-light);">
-        — Fait avec passion et respect, pour honorer nos ancêtres et célébrer notre unité familiale. —
-      </p>
-    </div>
+  <!-- TOP BAR : bouton gauche + traduction droite -->
+  <div class="top-bar">
+    <button class="btn-story" onclick="alert('📖 Rencontre avec l’histoire – les fils Gaïda vous invitent à découvrir leurs récits.')">
+      <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      Rencontrer une histoire
+    </button>
+    <div id="google_translate_element"></div>
   </div>
 
-  <!-- Widget de traduction -->
-  <div id="google_translate_element"></div>
-
-  <!-- Fil d'Ariane -->
+  <header id="mainHeader">🌳 Les fils Gaïda</header>
   <div id="breadcrumb" class="breadcrumb"></div>
 
   <input id="searchBox" type="text" placeholder="Rechercher un nom..." oninput="searchPerson()">
@@ -478,31 +337,7 @@
   <div id="tree"></div>
 
   <script>
-    // ---------- FONCTIONS POUR LE MODAL HISTOIRE ----------
-    function openStory() {
-      document.getElementById('storyModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeStory() {
-      document.getElementById('storyModal').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    // Fermer en cliquant à l'extérieur ou avec Échap
-    document.getElementById('storyModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeStory();
-      }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && document.getElementById('storyModal').style.display === 'flex') {
-        closeStory();
-      }
-    });
-
-    // ---------- DONNÉES FAMILIALES ----------
+    // ---------- DONNÉES FAMILIALES (inchangées) ----------
     const family = {
       name: "Bollou Oumar",
       children: [
@@ -1416,7 +1251,7 @@
       ]},]
     };
 
-    // ---------- LOGIQUE ARBRE ----------
+    // ---------- LOGIQUE ARBRE (adaptée) ----------
     let history = [];
     let currentPath = [];
 
@@ -1475,7 +1310,6 @@
       } else {
         mainHeader.style.display = "none";
         breadcrumbEl.style.display = "block";
-        
         let html = "Enfants de ";
         currentPath.forEach((person, index) => {
           if (index > 0) {
@@ -1570,7 +1404,7 @@
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'fr',
-        includedLanguages: 'ar,en',
+        includedLanguages: 'ar,en,fr',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
       }, 'google_translate_element');
     }
